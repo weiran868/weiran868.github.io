@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-MySQL主要知识点总结" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="w-用Java代码连接数据库入门" class="article article-type-w" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/10/18/MySQL主要知识点总结/" class="article-date">
-  <time datetime="2019-10-18T06:48:03.000Z" itemprop="datePublished">2019-10-18</time>
+    <a href="/2019/10/22/用Java代码连接数据库入门/" class="article-date">
+  <time datetime="2019-10-22T06:39:49.000Z" itemprop="datePublished">2019-10-22</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/18/MySQL主要知识点总结/">MySQL主要知识点总结</a>
+      <a class="article-title" href="/2019/10/22/用Java代码连接数据库入门/">用Java代码连接数据库入门</a>
     </h1>
   
 
@@ -84,236 +84,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#这是MySQL主要知识点汇总和部分例子<br>1、创建语句<br>    1.创建数据库<br>    create database 库名;<br>    2.创建表<br>    create table 表名(<br>    字段名1 数据类型 约束，<br>    字段名2 数据类型 约束，<br>    字段名3 数据类型 约束<br>        //约束可有可无，最后一个字段不加逗号<br>        //最常用的数据类型<br>        //int<br>        //char    字符串类型，固定长度<br>        //varchar 字符串长度，可变长度<br>        //float<br>    )<br>2、插入语句<br>    insert into 表名（字段1，字段2）<br>    values（数据1，数据2）<br>3、查询语句<br>    select 字段1，字段2，字段3<br>    form 表名<br>4、删除语句<br>    删除库<br>    drop database 库名;<br>    删除表<br>    drop table 表名;<br>    删除表中所有的数据<br>    delete from 表名;<br>    删除表中指定的数据<br>    delete from 表名 where …<br>5、更改语句<br>    update 表名 set<br>#更改表名<br>ALTER TABLE 旧表名 RENAME[TO]新表名<br>#修改数据类型<br>ALTER TABLE 表名 MODIFY 列名的数据类型<br>#修改列名<br> ALTER TABLE &lt;表名&gt; CHANGE 旧列名 新列名 新数据类型<br>删除列<br> ALTER TABLE 表名 drop 列名<br>添加列<br>ALTER TABLE 表名 add 新列名的数据类型 [约束] [first | after 已存在列名]</p>
-<p>#约束<br>    1.主键约束(primary key)<br>        主键：一行的唯一标识<br>            表中的其它数据依赖于主键<br>        不允许重复非空<br>    2.非空约束(not null)<br>    3.唯一约束(unique)<br>        此列不允许重复<br>    4.默认值约束(default)<br>    5.check约束(check)<br>    6.外键约束(foreign key)<br>        外键：此表中一个字段，引用另外一张表中字段数据，<br>        并且被引用的字段是另一张表的主键。那么此表中的字<br>        段就称为本张表的外键</p>
-<p>#创建库<br>CREATE DATABASE onlinemalll;<br>#使用指定的库<br>USE onlinemalll;<br>#创建表<br>CREATE TABLE goods(<br>gid INT PRIMARY KEY, #把gid设置为表的主键<br>gnam VARCHAR(100),<br>gprice FLOAT)<br>#插入数据<br>INSERT INTO goods(gnam,gprice) VALUES(‘吹风机’,11.6);<br>INSERT INTO goods(gnam,gprice) VALUES(‘外套’,21.6);<br>INSERT INTO goods(gnam,gprice) VALUES(‘小熊饼干’,31.6);<br>INSERT INTO goods(gnam,gprice) VALUES(‘小熊书包’,41.6);<code>goods</code><br>INSERT INTO goods(gid,gnam,gprice) VALUES(‘大龙娃’,61.6);<br>#查询出价格大于25的商品信息<br>SELECT * FROM goods WHERE gprice&gt;25;<br>#查询商品价格不等于21.6的商品信息<br>SELECT * FROM goods WHERE gprice&lt;&gt;25;<br>#查询商品价格大于20小于50的商品信息<br>SELECT * FROM goods WHERE gprice&gt;20 AND gprice&lt;50;<br>#查询商品的价格<br>SELECT SUM(gprice) ‘总价格’ FROM goods;<br>SELECT AVG(gprice) ‘平均价格’ FROM goods;<br>SELECT MAX(gprice) ‘最高价格’ FROM goods;<br>SELECT MIN(gprice) ‘最低价格’ FROM goods;</p>
-<p>#查询goods表<br>SELECT * FROM goods;<br>#删除gid=3的数据<br>DELETE FROM goods WHERE gid=3;</p>
-<p>CREATE DATABASE SchoolDB;<br> USE SchoolDB;<br> CREATE TABLE Teacher(<br>tid INT PRIMARY KEY AUTO_INCREMENT, #自增长<br>Teachernam VARCHAR(20) NOT NULL,<br>Hiredate DATE,<br>Gender VARCHAR(10) DEFAULT ‘男’<br>)<br>INSERT INTO teacher(Teachernam,Hiredate,Gender)<br> VALUES(‘蔚然’,’2015-07-03’,’男’);<br> SELECT * FROM Teacher;</p>
-<p> MySQL数据库的设计规范<br> 数据库设计的三大范式<br>     第一范式：<br>         表中的字段都是不可分割的最小数据单元。<br>     第二范式：<br>         每张表只能描述一件事情；<br>         每张表都要有主键。<br>     第三范式：<br>         非主键字段要依赖于主键字段；<br>         换句话说，非主键字段与主键字段<br>         直接相关。<br>     在设计表时，尽可能依靠三大范式；<br>     但有的时候，为了性能会牺牲范式；    </p>
-<pre><code>MySQL运算符    
-算术运算符
-    + - * /
-逻辑运算符
-    and  or  /
-比较运算符
-    &gt;  &lt;  &gt;=  &lt;=  &lt;&gt;  !=
-    mysql常用关键字
-    in                                    查询在...选项中的数据
-        where name in(&apos;张三&apos;,&apos;李四&apos;)        #把name等于张三和李四的都查询出来
-    not in                                查询在...选项中没有的数据
-        where name not in(&apos;张三&apos;,&apos;李四&apos;)    #把name不等于张三和李四的都查询出来
-    distinct                            去除重复的数据
-    limit                                #查询出表的指定行
-       #limit 0,2；                    0是行的下标，2是行数。即从下标0开始往下数2行
-                                       表的行的下标是从0开始的
-    between...and..                        在...和...之间
-    as                                    像...一样
-
-
-    Mysql拓展
-        order by                 排序
-            asc                    升序
-            desc                     降序
-        group by                     把表分组
-        group by...having..        分组并筛选符合条件的组
-        子查询
-                                   查询语句里边嵌套查询语句
-        连接
-                                   把多张表连接成一张表,要注意
-                                   一般连接有主外键关系的表
-           连接分类：
-           普通连接  
-           内连接
-             inner join .. on...    inner join用内连接方式连接两张表
-             on                      后边写的是条件
-           外连接（左连接与右连接）
-               左连接
-                                   left join..on...
-                                   左边的表显示所有数据，右边的表只显示匹配上的数据
-               右连接
-                   right join...on...
-                                   右边的表显示全部数据左边的表只显示匹配上的
-           全连接
-                                   左右边都全部显示   
-   CREATE DATABASE schooldb;
-   USE Schooldb;
-   #教师表
-   CREATE TABLE teacher(
-      tid INT PRIMARY KEY AUTO_INCREMENT,
-      tnam VARCHAR(20) NOT NULL,
-      hiredate DATE,#入职日期
-      sex VARCHAR(5) 
-   )
-   #班级信息表
-   CREATE TABLE ClassInfo(
-      cid INT PRIMARY KEY AUTO_INCREMENT,
-      cnam VARCHAR(20) NOT NULL,
-      grid INT, #年级编号
-      beginyear VARCHAR(20)
-   )
-   #学生信息表
-   CREATE TABLE StudentInfo(
-      sid INT PRIMARY KEY AUTO_INCREMENT,
-      snam VARCHAR(20) NOT NULL,
-      sex VARCHAR(5),
-      age INT,
-      birthday DATE,
-      cid INT, #班级编号
-      beginyear VARCHAR(20),#入学日期
-      stel VARCHAR(15),
-      address VARCHAR(100),
-      email VARCHAR(50)
-   )
-   #课程表
-   CREATE TABLE course(
-      coid INT PRIMARY KEY AUTO_INCREMENT,
-      cnam VARCHAR(50) NOT NULL,#课程名
-      tid INT    #讲授老师编号 
-   )
-   #成绩表
-   CREATE TABLE score(
-      scid INT PRIMARY KEY AUTO_INCREMENT,
-      sid INT ,#学生学号
-      coid INT, #课程编号
-      score INT,
-      remark VARCHAR(100) #备注 
-   )
-   #年级表
-   CREATE TABLE grade(
-     gid INT PRIMARY KEY AUTO_INCREMENT,
-     gnam VARCHAR(50), #年级名
-     major VARCHAR(100) #专业
-   )
-   #一次性插入多条语句
-   INSERT INTO teacher(tnam,hiredate,sex)
-   VALUES(&apos;张三&apos;,&apos;2017-09-01&apos;,&apos;男&apos;),
-   (&apos;李四&apos;,&apos;2018-07-02&apos;,&apos;男&apos;),
-   (&apos;王五&apos;,&apos;2016-08-16&apos;,&apos;男&apos;);
-   INSERT INTO grade(gnam,major)
-   VALUES(&apos;18级&apos;,&apos;软信&apos;),(&apos;19级&apos;,&apos;软信&apos;)
-   ,(&apos;18级&apos;,&apos;移动&apos;),(&apos;19级&apos;,&apos;移动&apos;);
-   INSERT INTO StudentInfo(snam,sex,age
-   ,birthday,cid,beginyear,stel,address
-   ,email) VALUES(&apos;崔一&apos;,&apos;男&apos;,18,&apos;2001-07-05&apos;
-   ,1,&apos;2018&apos;,&apos;18867890987&apos;,
-   &apos;河南省许昌市&apos;,&apos;159078923@qq.com&apos;),
-   (&apos;丁二&apos;,&apos;男&apos;,19,&apos;2000-08-05&apos;
-   ,2,&apos;2018&apos;,&apos;18967890987&apos;,
-   &apos;河南省许昌市&apos;,&apos;156078923@qq.com&apos;),
-   (&apos;丁三&apos;,&apos;男&apos;,20,&apos;1999-09-05&apos;
-   ,3,&apos;2018&apos;,&apos;18877890987&apos;,
-   &apos;河南省郑州市&apos;,&apos;157078923@qq.com&apos;),
-   (&apos;周三&apos;,&apos;女&apos;,17,&apos;2002-06-05&apos;
-   ,4,&apos;2019&apos;,&apos;18177890987&apos;,
-   &apos;河南省洛阳市&apos;,&apos;157278923@qq.com&apos;);
-   INSERT INTO StudentInfo(snam,sex,age
-   ,birthday,cid,beginyear,stel,address
-   ,email) VALUES(&apos;周四&apos;,&apos;女&apos;,18,&apos;2002-06-05&apos;
-   ,4,&apos;2019&apos;,&apos;18177800087&apos;,
-   &apos;河南省洛阳市&apos;,&apos;157279923@qq.com&apos;)
-   INSERT INTO ClassInfo(cnam,grid,
-   beginyear) VALUES(&apos;软信1&apos;,1,&apos;2018&apos;)
-   ,(&apos;移动1&apos;,2,&apos;2018&apos;),(&apos;软信1&apos;,3,&apos;2019&apos;),
-   (&apos;移动1&apos;,4,&apos;2019&apos;);
-   INSERT INTO course(cnam,tid)
-   VALUES(&apos;计算机基础&apos;,1),(&apos;前端基础&apos;,2)
-   ,(&apos;java基础&apos;,3),(&apos;js基础&apos;,3);
-   INSERT INTO score(sid,coid,score,remark)
-   VALUES(1,1,90,&apos;无&apos;),(1,2,75,&apos;无&apos;),
-   (1,3,59,&apos;无&apos;),(1,4,76,&apos;无&apos;)
-   ,(2,1,93,&apos;无&apos;),(2,2,77,&apos;无&apos;),
-   (2,3,66,&apos;无&apos;),(2,4,78,&apos;无&apos;),
-   (3,1,87,&apos;无&apos;),(3,2,55,&apos;无&apos;),
-   (3,3,76,&apos;无&apos;),
-   (4,1,88,&apos;无&apos;),(4,2,66,&apos;无&apos;),
-   (4,3,90,&apos;无&apos;),(4,4,76,&apos;无&apos;);
-   #order by排序
-   #把StudentInfo表按年纪从小到大排序
-   SELECT * FROM StudentInfo ORDER BY 
-       age ASC;
-   #把StudentInfo表按年纪从大到小排序
-   SELECT * FROM StudentInfo ORDER BY 
-       age DESC;
-   #group by分组
-   #把某张表按照某个字段进行分组
-   #查询出每个学生的平均成绩，结果要
-   #显示的字段为，学生学号 平均成绩
-   SELECT sid,AVG(score) &apos;平均成绩&apos;
-   FROM score GROUP BY sid;
-   #group by ... havig..筛选出来符合条件
-   #的组
-   #查询出全部及格学生的平均成绩
-   SELECT sid,AVG(score) &apos;avg&apos; FROM score
-   GROUP BY sid HAVING MIN(score)&gt;60;
-   #查询出考试门数不够四门的学生学号
-   SELECT sid FROM score GROUP BY sid
-       HAVING COUNT(*)&lt;4;
-   #查询出“计算机基础”的成绩
-   SELECT coid,score FROM score WHERE
-   coid=(
-   SELECT coid FROM course 
-                WHERE cnam=&apos;计算机基础&apos;);
-   #查询出每门课的平均成绩
-   SELECT coid,AVG(score)&apos;平均成绩&apos; FROM
-                  score GROUP BY coid; 
-   #查询出‘周三’学生的平均成绩
-   SELECT AVG(score) &apos;平均成绩&apos; FROM
-                  score WHERE sid=(
-   SELECT sid FROM StudentInfo 
-                  WHERE snam=&apos;周三&apos;);
-   #连接
-   #普通连接
-   SELECT * FROM StudentInfo s,score c
-                         WHERE 
-                         s.sid=c.sid;
-   #查询出每个人的平均成绩，要显示的
-   #字段为，姓名 平均成绩
-   SELECT snam,AVG(score) FROM 
-                StudentInfo s,score c
-                WHERE 
-                s.sid=c.sid
-                GROUP BY s.sid;
-   #内连接
-   SELECT * FROM StudentInfo s 
-                 INNER JOIN
-                 score c
-                 ON
-                 s.sid=c.sid;
-   SELECT snam,AVG(score) FROM 
-                StudentInfo s
-                INNER JOIN             
-                score c
-                ON 
-                s.sid=c.sid
-                GROUP BY s.sid;
-
-   #左连接
-   SELECT * FROM StudentInfo s 
-                 LEFT JOIN
-                 score c
-                 ON
-                 s.sid=c.sid;
-   #查询出有不及格成绩的学生信息，
-   #缺考算不及格
-   SELECT * FROM StudentInfo WHERE sid 
-   IN(
-   SELECT sid FROM score
-             GROUP BY sid 
-             HAVING MIN(score)&lt;60
-   UNION
-   SELECT sid FROM score 
-                GROUP BY sid
-                HAVING 
-                COUNT(*)&lt;
-                (SELECT COUNT(*) FROM 
-                  course));
-                  ###以上内容为本人个人总结而出，仅供参考###
-                               #作者    蔚然
-                  ###未经授权，不得转载！###</code></pre>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/18/MySQL主要知识点总结/" data-id="ck1vsezht00000wlsuq2n601j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/22/用Java代码连接数据库入门/" data-id="ck21hhi7n00006olszgmob616" class="article-share-link">Share</a>
       
       
     </footer>
@@ -362,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/16/hello-world/" data-id="ck1vsezi600010wlspkyacg8q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/16/hello-world/" data-id="ck21hhi8000016ols3u7gmlls" class="article-share-link">Share</a>
       
       
     </footer>
@@ -403,7 +178,7 @@
       <ul>
         
           <li>
-            <a href="/2019/10/18/MySQL主要知识点总结/">MySQL主要知识点总结</a>
+            <a href="/2019/10/22/用Java代码连接数据库入门/">用Java代码连接数据库入门</a>
           </li>
         
           <li>
